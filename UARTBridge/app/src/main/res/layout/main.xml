@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ButtonSetup"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Setup" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#8BC34A"
+        android:gravity="center"
+        android:text="UART Bridge"
+        android:textColor="#2B2B2B"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_serialport"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="Serial Port"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText_serial"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="/dev/ttyHSL0" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_baudrate"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="Baudrate"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText_baudrate"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="115200" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_datatittle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#8BC34A"
+        android:gravity="center"
+        android:text="Data"
+        android:textColor="#2B2B2B"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_rate"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="Rate"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText_rate"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="$6.25" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_km"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="Km"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText_km"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="16" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_k"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="K Factor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText_k"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="0.005" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"></LinearLayout>
+
+</LinearLayout>

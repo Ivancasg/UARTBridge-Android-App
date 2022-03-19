@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "32.0.0"
+
+    defaultConfig {
+        applicationId "UARTBridge.sample"
+        minSdkVersion 3
+        targetSdkVersion 27
+
+        ndk {
+            moduleName "serial_port"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+}
