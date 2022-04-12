@@ -5,7 +5,7 @@ android {
     buildToolsVersion "32.0.0"
 
     defaultConfig {
-        applicationId "UARTBridge.sample"
+        applicationId 'com.UARTBridge.sample'
         minSdkVersion 3
         targetSdkVersion 27
 
