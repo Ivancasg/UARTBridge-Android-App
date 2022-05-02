@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string-array name="devices_name">
+        <item>/dev/ttyMSM1</item>
+        <item>/dev/ttyMSM2</item>
+    </string-array>
+    <string-array name="devices_value">
+        <item>/dev/ttyMSM1</item>
+        <item>/dev/ttyMSM2</item>
+    </string-array>
+    <string-array name="k_rates_name">
+        <item>5000</item>
+        <item>7500</item>
+        <item>11000</item>
+        <item>13400</item>
+        <item>15000</item>
+    </string-array>
+    <string-array name="k_rates_value">
+        <item>5000</item>
+        <item>7500</item>
+        <item>11000</item>
+        <item>13400</item>
+        <item>15000</item>
+    </string-array>
     <string-array name="baudrates_name">
         <item>50</item>
         <item>75</item>
