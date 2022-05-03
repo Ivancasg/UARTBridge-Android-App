@@ -65,7 +65,7 @@ public abstract class SerialPortActivity extends Activity {
 		b.setMessage(resourceId);
 		b.setPositiveButton("OK", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				SerialPortActivity.this.finish();
+				//SerialPortActivity.this.finish();
 			}
 		});
 		b.show();

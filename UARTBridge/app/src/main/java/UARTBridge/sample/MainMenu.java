@@ -21,18 +21,25 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.security.InvalidParameterException;
 
 public class MainMenu extends SerialPortActivity {
 
     EditText config_serialPort;
     EditText config_baudrate;
 
-    EditText mReception_rate;
     EditText mReception_km;
-    EditText mReception_k;
+
+    //InputStream mInputStream;
+    //ReadThread mReadThread;
+
 
     /** Called when the activity is first created. */
     @Override
@@ -43,13 +50,36 @@ public class MainMenu extends SerialPortActivity {
         config_serialPort = (EditText) findViewById(R.id.editText_serial);
         config_baudrate = (EditText) findViewById(R.id.editText_baudrate);
 
-        mReception_rate = (EditText) findViewById(R.id.editText_rate);
         mReception_km = (EditText) findViewById(R.id.editText_km);
-        mReception_k = (EditText) findViewById(R.id.editText_k);
 
-        SharedPreferences sp = getSharedPreferences("android_serialport_api.sample_preferences", MODE_PRIVATE);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         config_serialPort.setText(sp.getString("DEVICE", ""));
         config_baudrate.setText(sp.getString("BAUDRATE", "-1"));
+
+        sp.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                config_serialPort.setText(sp.getString("DEVICE", "-1"));
+                config_baudrate.setText(sp.getString("BAUDRATE", "-1"));
+
+//                mApplication = (Application) getApplication();
+//                try {
+//                    mSerialPort = mApplication.getSerialPort();
+//                    mOutputStream = mSerialPort.getOutputStream();
+//                    mInputStream = mSerialPort.getInputStream();
+//
+//                    /* Create a receiving thread */
+//                    mReadThread = new ReadThread();
+//                    mReadThread.start();
+//                } catch (SecurityException e) {
+//                    DisplayError(R.string.error_security);
+//                } catch (IOException e) {
+//                    DisplayError(R.string.error_unknown);
+//                } catch (InvalidParameterException e) {
+//                    DisplayError(R.string.error_configuration);
+//                }
+            }
+        });
 
         final Button buttonSetup = (Button)findViewById(R.id.ButtonSetup);
         buttonSetup.setOnClickListener(new View.OnClickListener() {
@@ -65,18 +95,9 @@ public class MainMenu extends SerialPortActivity {
         runOnUiThread(new Runnable() {
             public void run() {
                 String bufferStrings = new String(buffer, 0, size);
-                if (bufferStrings.length() >= 15) {//%$6.25%099%0.48
-                    String[] parsedStrings = bufferStrings.split("%");
 
-                    if (mReception_rate != null && parsedStrings.length > 1) {
-                        mReception_rate.setText(parsedStrings[1]);
-                    }
-                    if (mReception_km != null && parsedStrings.length > 2) {
-                        mReception_km.setText(parsedStrings[2]);
-                    }
-                    if (mReception_k != null && parsedStrings.length > 3) {
-                        mReception_k.setText(parsedStrings[3]);
-                    }
+                if (mReception_km != null) {
+                    mReception_km.setText(bufferStrings);
                 }
             }
         });
