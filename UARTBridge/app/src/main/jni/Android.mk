@@ -23,4 +23,6 @@ LOCAL_MODULE    := serial_port
 LOCAL_SRC_FILES := SerialPort.c
 LOCAL_LDLIBS    := -llog
 
+LOCAL_LDFLAGS += -fPIC
+
 include $(BUILD_SHARED_LIBRARY)
