@@ -37,7 +37,7 @@ public abstract class SerialPortActivity extends Activity {
 	private InputStream mInputStream;
 	private ReadThread mReadThread;
 
-	private class ReadThread extends Thread {
+	protected class ReadThread extends Thread {
 
 		@Override
 		public void run() {
@@ -59,7 +59,7 @@ public abstract class SerialPortActivity extends Activity {
 		}
 	}
 
-	private void DisplayError(int resourceId) {
+	protected void DisplayError(int resourceId) {
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setTitle("Error");
 		b.setMessage(resourceId);

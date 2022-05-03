@@ -26,9 +26,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.security.InvalidParameterException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidParameterException;
 
 public class MainMenu extends SerialPortActivity {
 
@@ -37,8 +37,8 @@ public class MainMenu extends SerialPortActivity {
 
     EditText mReception_km;
 
-    //InputStream mInputStream;
-    //ReadThread mReadThread;
+    InputStream mInputStream;
+    ReadThread mReadThread;
 
 
     /** Called when the activity is first created. */
@@ -62,22 +62,22 @@ public class MainMenu extends SerialPortActivity {
                 config_serialPort.setText(sp.getString("DEVICE", "-1"));
                 config_baudrate.setText(sp.getString("BAUDRATE", "-1"));
 
-//                mApplication = (Application) getApplication();
-//                try {
-//                    mSerialPort = mApplication.getSerialPort();
-//                    mOutputStream = mSerialPort.getOutputStream();
-//                    mInputStream = mSerialPort.getInputStream();
-//
-//                    /* Create a receiving thread */
-//                    mReadThread = new ReadThread();
-//                    mReadThread.start();
-//                } catch (SecurityException e) {
-//                    DisplayError(R.string.error_security);
-//                } catch (IOException e) {
-//                    DisplayError(R.string.error_unknown);
-//                } catch (InvalidParameterException e) {
-//                    DisplayError(R.string.error_configuration);
-//                }
+                mApplication = (Application) getApplication();
+                try {
+                    mSerialPort = mApplication.getSerialPort();
+                    mOutputStream = mSerialPort.getOutputStream();
+                    mInputStream = mSerialPort.getInputStream();
+
+                    /* Create a receiving thread */
+                    mReadThread = new ReadThread();
+                    mReadThread.start();
+                } catch (SecurityException e) {
+                    DisplayError(R.string.error_security);
+                } catch (IOException e) {
+                    DisplayError(R.string.error_unknown);
+                } catch (InvalidParameterException e) {
+                    DisplayError(R.string.error_configuration);
+                }
             }
         });
 
