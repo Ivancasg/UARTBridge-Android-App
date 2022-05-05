@@ -17,6 +17,8 @@
         </activity>
         <activity android:name="SerialPortPreferences" >
         </activity>
+        <activity android:name="ConsoleActivity" >
+        </activity>
     </application>
 
 </manifest>

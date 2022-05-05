@@ -33,7 +33,10 @@ public class Application extends android.app.Application {
 	private SerialPort mSerialPort = null;
 
 	public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
-		if (mSerialPort == null) {
+		//if (mSerialPort == null) {
+		if (mSerialPort != null) {
+			mSerialPort.close();
+		}
 			/* Read serial port parameters */
 			//SharedPreferences sp = getSharedPreferences("android_serialport_api.sample_preferences", MODE_PRIVATE);
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -47,7 +50,7 @@ public class Application extends android.app.Application {
 
 			/* Open the serial port */
 			mSerialPort = new SerialPort(new File(path), baudrate, 0);
-		}
+		//}
 		return mSerialPort;
 	}
 

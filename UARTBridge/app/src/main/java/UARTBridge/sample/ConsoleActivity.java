@@ -33,27 +33,26 @@ public class ConsoleActivity extends SerialPortActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.console);
 
-//		setTitle("Loopback test");
 		mReception = (EditText) findViewById(R.id.EditTextReception);
 
-//		EditText Emission = (EditText) findViewById(R.id.EditTextEmission);
-//		Emission.setOnEditorActionListener(new OnEditorActionListener() {
-//			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//				int i;
-//				CharSequence t = v.getText();
-//				char[] text = new char[t.length()];
-//				for (i=0; i<t.length(); i++) {
-//					text[i] = t.charAt(i);
-//				}
-//				try {
-//					mOutputStream.write(new String(text).getBytes());
-//					mOutputStream.write('\n');
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//				return false;
-//			}
-//		});
+		EditText Emission = (EditText) findViewById(R.id.EditTextEmission);
+		Emission.setOnEditorActionListener(new OnEditorActionListener() {
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				int i;
+				CharSequence t = v.getText();
+				char[] text = new char[t.length()];
+				for (i=0; i<t.length(); i++) {
+					text[i] = t.charAt(i);
+				}
+				try {
+					mOutputStream.write(new String(text).getBytes());
+					mOutputStream.write('\n');
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return false;
+			}
+		});
 	}
 
 	@Override

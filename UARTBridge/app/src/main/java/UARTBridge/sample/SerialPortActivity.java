@@ -65,7 +65,7 @@ public abstract class SerialPortActivity extends Activity {
 		b.setMessage(resourceId);
 		b.setPositiveButton("OK", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				//SerialPortActivity.this.finish();
+				SerialPortActivity.this.finish();
 			}
 		});
 		b.show();
@@ -75,21 +75,26 @@ public abstract class SerialPortActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mApplication = (Application) getApplication();
-		try {
-			mSerialPort = mApplication.getSerialPort();
-			mOutputStream = mSerialPort.getOutputStream();
-			mInputStream = mSerialPort.getInputStream();
 
-			/* Create a receiving thread */
-			mReadThread = new ReadThread();
-			mReadThread.start();
-		} catch (SecurityException e) {
-			DisplayError(R.string.error_security);
-		} catch (IOException e) {
-			DisplayError(R.string.error_unknown);
-		} catch (InvalidParameterException e) {
-			DisplayError(R.string.error_configuration);
+		if (mSerialPort == null) {
+			try {
+				mSerialPort = mApplication.getSerialPort();
+				mOutputStream = mSerialPort.getOutputStream();
+				mInputStream = mSerialPort.getInputStream();
+
+				/* Create a receiving thread */
+				mReadThread = new ReadThread();
+				mReadThread.start();
+			} catch (SecurityException e) {
+				DisplayError(R.string.error_security);
+			} catch (IOException e) {
+				DisplayError(R.string.error_unknown);
+			} catch (InvalidParameterException e) {
+				DisplayError(R.string.error_configuration);
+			}
 		}
+
+
 	}
 
 	protected abstract void onDataReceived(final byte[] buffer, final int size);

@@ -30,15 +30,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidParameterException;
 
-public class MainMenu extends SerialPortActivity {
+public class MainMenu extends Activity {
 
     EditText config_serialPort;
     EditText config_baudrate;
 
-    EditText mReception_km;
-
-    InputStream mInputStream;
-    ReadThread mReadThread;
+//    EditText mReception_km;
+//
+//    InputStream mInputStream;
+//    ReadThread mReadThread;
 
 
     /** Called when the activity is first created. */
@@ -50,7 +50,7 @@ public class MainMenu extends SerialPortActivity {
         config_serialPort = (EditText) findViewById(R.id.editText_serial);
         config_baudrate = (EditText) findViewById(R.id.editText_baudrate);
 
-        mReception_km = (EditText) findViewById(R.id.editText_km);
+        //mReception_km = (EditText) findViewById(R.id.editText_km);
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         config_serialPort.setText(sp.getString("DEVICE", ""));
@@ -62,22 +62,22 @@ public class MainMenu extends SerialPortActivity {
                 config_serialPort.setText(sp.getString("DEVICE", "-1"));
                 config_baudrate.setText(sp.getString("BAUDRATE", "-1"));
 
-                mApplication = (Application) getApplication();
-                try {
-                    mSerialPort = mApplication.getSerialPort();
-                    mOutputStream = mSerialPort.getOutputStream();
-                    mInputStream = mSerialPort.getInputStream();
-
-                    /* Create a receiving thread */
-                    mReadThread = new ReadThread();
-                    mReadThread.start();
-                } catch (SecurityException e) {
-                    DisplayError(R.string.error_security);
-                } catch (IOException e) {
-                    DisplayError(R.string.error_unknown);
-                } catch (InvalidParameterException e) {
-                    DisplayError(R.string.error_configuration);
-                }
+//                mApplication = (Application) getApplication();
+//                try {
+//                    mSerialPort = mApplication.getSerialPort();
+//                    mOutputStream = mSerialPort.getOutputStream();
+//                    mInputStream = mSerialPort.getInputStream();
+//
+//                    /* Create a receiving thread */
+//                    mReadThread = new ReadThread();
+//                    mReadThread.start();
+//                } catch (SecurityException e) {
+//                    DisplayError(R.string.error_security);
+//                } catch (IOException e) {
+//                    DisplayError(R.string.error_unknown);
+//                } catch (InvalidParameterException e) {
+//                    DisplayError(R.string.error_configuration);
+//                }
             }
         });
 
@@ -87,20 +87,27 @@ public class MainMenu extends SerialPortActivity {
 				startActivity(new Intent(MainMenu.this, SerialPortPreferences.class));
 			}
 		});
-    }
 
-    @Override
-    protected void onDataReceived(final byte[] buffer, final int size) {
-
-        runOnUiThread(new Runnable() {
-            public void run() {
-                String bufferStrings = new String(buffer, 0, size);
-
-                if (mReception_km != null) {
-                    mReception_km.setText(bufferStrings);
-                }
+        final Button openConsole = (Button)findViewById(R.id.OpenConsole);
+        openConsole.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainMenu.this, ConsoleActivity.class));
             }
         });
     }
+
+//    @Override
+//    protected void onDataReceived(final byte[] buffer, final int size) {
+//
+//        runOnUiThread(new Runnable() {
+//            public void run() {
+//                String bufferStrings = new String(buffer, 0, size);
+//
+//                if (mReception_km != null) {
+//                    mReception_km.setText(bufferStrings);
+//                }
+//            }
+//        });
+//    }
 
 }
